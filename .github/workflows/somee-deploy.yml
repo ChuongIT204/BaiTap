@@ -20,5 +20,5 @@ jobs:
           protocol: ftp
           port: 21
           server-dir: "/www.nguyenthechuong.somee.com/"
-          local-dir: "."
+          local-dir: "./"
           log-level: verbose
