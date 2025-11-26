@@ -11,13 +11,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Sync files to Somee via FTP
+      - name: Deploy to Somee FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.0
         with:
-          server: ${{ secrets.SOME_FTP_SERVER }}
+          server: "155.254.246.47"
           username: ${{ secrets.SOME_FTP_USERNAME }}
           password: ${{ secrets.SOME_FTP_PASSWORD }}
-          protocol: ftp        
-          server-dir: /www.nguyenthechuong.somee.com/
-          local-dir: ./      
-          git-ftp-args: --insecure 
+          protocol: ftp
+          port: 21
+          server-dir: "/www.nguyenthechuong.somee.com/"
+          local-dir: "."
+          log-level: verbose
