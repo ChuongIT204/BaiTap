@@ -10,6 +10,9 @@
     <input id="nameInput" type="text" placeholder="Nhập tên của bạn">
     <button onclick="sendData()">Gửi</button>
 
+    <h2>Lấy giờ server từ API</h2>
+    <button onclick="getServerTime()">Xem giờ server</button>
+
     <h3>Kết quả từ API:</h3>
     <pre id="result"></pre>
 
@@ -17,20 +20,25 @@
 function sendData() {
     const name = document.getElementById("nameInput").value;
 
-    fetch("api/handle.php", {
+    fetch("api/handle.php?action=hello", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name })
     })
     .then(res => res.json())
     .then(data => {
-        document.getElementById("result").textContent = JSON.stringify(data, null, 2);
-    })
-    .catch(err => {
-        document.getElementById("result").textContent = "Lỗi: " + err;
+        document.getElementById("result").textContent =
+            JSON.stringify(data, null, 2);
     });
+}
+
+function getServerTime() {
+    fetch("api/handle.php?action=time")
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("result").textContent =
+                JSON.stringify(data, null, 2);
+        });
 }
 </script>
 </body>
