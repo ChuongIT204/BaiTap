@@ -1,0 +1,23 @@
+name: Deploy to Somee via FTP
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Sync files to Somee via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.0
+        with:
+          server: ${{ secrets.SOME_FTP_SERVER }}
+          username: ${{ secrets.SOME_FTP_USERNAME }}
+          password: ${{ secrets.SOME_FTP_PASSWORD }}
+          protocol: ftp        
+          server-dir: /nguyenthechuong.somee.com/
+          local-dir: ./      
+          git-ftp-args: --insecure 
