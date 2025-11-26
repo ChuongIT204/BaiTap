@@ -18,6 +18,6 @@ jobs:
           username: ${{ secrets.SOME_FTP_USERNAME }}
           password: ${{ secrets.SOME_FTP_PASSWORD }}
           protocol: ftp        
-          server-dir: /nguyenthechuong.somee.com/
+          server-dir: /www.nguyenthechuong.somee.com/
           local-dir: ./      
           git-ftp-args: --insecure 
