@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo API PHP</title>
+</head>
+<body>
+    <h2>Gửi dữ liệu đến API PHP</h2>
+
+    <input id="nameInput" type="text" placeholder="Nhập tên của bạn">
+    <button onclick="sendData()">Gửi</button>
+
+    <h3>Kết quả từ API:</h3>
+    <pre id="result"></pre>
+
+<script>
+function sendData() {
+    const name = document.getElementById("nameInput").value;
+
+    fetch("api/handle.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name })
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+    })
+    .catch(err => {
+        document.getElementById("result").textContent = "Lỗi: " + err;
+    });
+}
+</script>
+</body>
+</html>
